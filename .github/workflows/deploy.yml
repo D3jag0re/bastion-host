@@ -114,5 +114,5 @@ jobs:
         host: ${{ needs.build_droplet.outputs.b_ipv4 }}
         username: root
         key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
-        source: "home/runner/.ssh/"
+        source: home/runner/.ssh/
         target: /root
