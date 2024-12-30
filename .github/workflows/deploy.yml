@@ -8,9 +8,12 @@ jobs:
  build_droplet:
    runs-on: ubuntu-latest
    outputs:
-    id: ${{ steps.dropletOutputs.outputs.id}}
-    ipv4: ${{ steps.dropletOutputs.outputs.ipv4}}
-    name: ${{ steps.dropletOutputs.outputs.name}}
+    b_id: ${{ steps.bastionOutputs.outputs.b_id}}
+    b_ipv4: ${{ steps.bastionOutputs.outputs.b_ipv4}}
+    b_name: ${{ steps.bastionOutputs.outputs.b_name}}
+    p_id: ${{ steps.privateOutputs.outputs.p_id}}
+    p_ipv4: ${{ steps.privateOutputs.outputs.p_ipv4}}
+    p_name: ${{ steps.privateOutputs.outputs.p_name}}
 
    steps:
      - name: Checkout repository
