@@ -94,17 +94,19 @@ jobs:
     - name: Setup SSH Keys
       run: |
         # Create the SSH directory
-        mkdir -p /keytemp
+        mkdir -p ~/.ssh
+        cd ~/.ssh
+        pwd
 
         # Write the private key into a file
-        echo "${{secrets.DO_SSH_PRIVATE_KEY_PRIVATE}}" > /keytemp/id_rsa
+        echo "${{secrets.DO_SSH_PRIVATE_KEY_PRIVATE}}" > ~/.ssh/id_rsa
 
         # Write the public key into a file
-        echo "${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" > /keytemp/id_rsa.pub
+        echo "${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" > ~/.ssh/id_rsa.pub
 
         # Set the correct permissions
-        chmod 600 /keytemp/id_rsa
-        chmod 644 /keytemp/id_rsa.pub
+        chmod 600 ~/.ssh/id_rsa
+        chmod 644 ~/.ssh/id_rsa.pub
 
     - name: copy key to remote server
       uses: appleboy/scp-action@v0.1.7
@@ -112,5 +114,5 @@ jobs:
         host: ${{ needs.build_droplet.outputs.b_ipv4 }}
         username: root
         key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
-        source: "/keytemp/"
+        source: "${HOME}/.ssh/id_rsa*"
         target: /root
