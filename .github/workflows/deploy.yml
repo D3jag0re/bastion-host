@@ -68,7 +68,7 @@ jobs:
      - name: Get Bastion Droplet Outputs
        id: bastionOutputs
        run: |
-        DROPLET_INFO=$(terraform output -json droplet_info)
+        DROPLET_INFO=$(terraform output -json bastion_info)
         echo "b_id=$(echo $DROPLET_INFO | jq -r '.id')" >> $GITHUB_OUTPUT
         echo "b_ipv4=$(echo $DROPLET_INFO | jq -r '.ipv4')" >> $GITHUB_OUTPUT
         echo "b_name=$(echo $DROPLET_INFO | jq -r '.name')" >> $GITHUB_OUTPUT
@@ -77,7 +77,7 @@ jobs:
      - name: Get Private Droplet Outputs
        id: privateOutputs
        run: |
-        DROPLET_INFO=$(terraform output -json droplet_info)
+        DROPLET_INFO=$(terraform output -json private_info)
         echo "p_id=$(echo $DROPLET_INFO | jq -r '.id')" >> $GITHUB_OUTPUT
         echo "p_ipv4=$(echo $DROPLET_INFO | jq -r '.ipv4')" >> $GITHUB_OUTPUT
         echo "p_name=$(echo $DROPLET_INFO | jq -r '.name')" >> $GITHUB_OUTPUT
