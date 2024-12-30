@@ -106,9 +106,6 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         chmod 644 ~/.ssh/id_rsa.pub
 
-        # Add the remote host to known_hosts to prevent prompts
-        ssh-keyscan -H your.server.ip >> ~/.ssh/known_hosts
-
     - name: copy key to remote server
       uses: appleboy/scp-action@v0.1.7
       with:
