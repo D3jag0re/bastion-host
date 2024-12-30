@@ -81,4 +81,4 @@ After completing this project, you will have a strong understanding of how to se
 ## Lessons Learned
 
 - Digital Ocean auto-assigns a `public ip` with no option to turn off so access must be configured at firewall. 
-- Terraform was hanging in GitHub Actions, ran locally and got the errors.
+- Terraform was hanging in GitHub Actions, ran locally and got the errors. Also was hanging due to not specifying token in plan command. 

@@ -39,10 +39,12 @@ jobs:
 
      - name: Terraform Plan
        id: plan
+       working-directory: ./terraform
        run: |
         terraform plan  \
         -var "do_token=${{ secrets.DO_TOKEN }}" \
-       working-directory: ./terraform
+        -input=false \
+       
        env:
         DO_TOKEN: ${{ secrets.DO_TOKEN }}
         AWS_ACCESS_KEY_ID: ${{ secrets.DO_SPACES_ACCESS_KEY }}
