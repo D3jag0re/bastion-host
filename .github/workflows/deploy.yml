@@ -108,11 +108,14 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         chmod 644 ~/.ssh/id_rsa.pub
 
+        # Check for files 
+        ls /home/runner/.ssh/
+
     - name: copy key to remote server
       uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ needs.build_droplet.outputs.b_ipv4 }}
         username: root
         key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
-        source: /home/runner/.ssh/
+        source: "/home/runner/.ssh/*"
         target: /root
