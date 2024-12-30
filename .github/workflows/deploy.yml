@@ -116,7 +116,7 @@ jobs:
       uses: burnett01/rsync-deployments@7.0.1
       with:
         switches: -avzr --delete
-        path: ~/.ssh/
+        path: "/home/runner/.ssh/"
         remote_path: /root/
         remote_host: ${{ needs.build_droplet.outputs.b_ipv4 }}
         remote_user: root
