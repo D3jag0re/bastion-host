@@ -58,10 +58,12 @@ jobs:
          terraform apply -auto-approve \
           -var "do_token=${{ secrets.DO_TOKEN }}" \
           -var "public_key=${{ secrets.DO_SSH_PUBLIC_KEY_BASTION }}" \
-          -var "public_key_priv"=${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" \
+          -var "public_key_priv=${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" 
        working-directory: ./terraform
        env:
         DO_TOKEN: ${{ secrets.DO_TOKEN }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.DO_SPACES_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.DO_SPACES_SECRET_KEY }}
       
      - name: Get Bastion Droplet Outputs
        id: bastionOutputs
