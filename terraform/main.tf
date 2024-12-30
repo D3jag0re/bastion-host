@@ -12,13 +12,13 @@ provider "digitalocean" {
 
 # SSH Key - Bastion. In GHA Secrets
 resource "digitalocean_ssh_key" "bastion_dynamic_key" {
-  name       = "github-actions-key"
+  name       = "github-actions-bastion-key"
   public_key = var.public_key
 }
 
 # SSH Key - Private. In GHA Secrets
 resource "digitalocean_ssh_key" "private_dynamic_key" {
-  name       = "github-actions-key"
+  name       = "github-actions-private-server-key"
   public_key = var.public_key_priv
 }
 
@@ -82,15 +82,17 @@ resource "digitalocean_firewall" "bastionFW" {
 resource "digitalocean_firewall" "privateFW" {
   name = "privateFW"
 
-  droplet_ids = [digitalocean_droplet.private-host.id]
+  droplet_ids = [digitalocean_droplet.private-server.id]
 
   inbound_rule {
     protocol         = "tcp"
+    port_range = "1-65535"
     source_addresses = ["10.10.10.0/24"]
   }
 
   inbound_rule {
     protocol         = "udp"
+    port_range = "1-65535"
     source_addresses = ["10.10.10.0/24"]
   }
 
@@ -101,11 +103,13 @@ resource "digitalocean_firewall" "privateFW" {
 
   outbound_rule {
     protocol              = "tcp"
+    port_range = "1-65535"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   outbound_rule {
     protocol              = "udp"
+    port_range = "1-65535"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
@@ -122,9 +126,9 @@ resource "digitalocean_droplet" "bastion-host" {
   region  = "nyc2"
   size    = "s-1vcpu-1gb"
   backups = true
-  vpc_uuid = digitalocean_vpc.bastion-vpc
+  vpc_uuid = digitalocean_vpc.bastion-vpc.id
 
-  ssh_keys = [digitalocean_ssh_key.bastion_dynamic_key]
+  ssh_keys = [digitalocean_ssh_key.bastion_dynamic_key.id]
 }
 
 # Create Private Server
@@ -134,9 +138,9 @@ resource "digitalocean_droplet" "private-server" {
   region  = "nyc2"
   size    = "s-1vcpu-1gb"
   backups = true
-  vpc_uuid = digitalocean_vpc.bastion-vpc
+  vpc_uuid = digitalocean_vpc.bastion-vpc.id
 
-  ssh_keys = [digitalocean_ssh_key.private_dynamic_key]
+  ssh_keys = [digitalocean_ssh_key.private_dynamic_key.id]
 }
 
 
