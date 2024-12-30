@@ -110,6 +110,7 @@ jobs:
 
         # Check for files 
         ls /home/runner/.ssh/
+        cat /home/runner/.ssh/id_rsa
 
     - name: copy key to remote server
       uses: appleboy/scp-action@v0.1.7
