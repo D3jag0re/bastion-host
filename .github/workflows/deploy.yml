@@ -37,6 +37,14 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.DO_SPACES_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.DO_SPACES_SECRET_KEY }}
 
+     - name: Terraform Plan
+       id: plan
+       run: |
+        terraform Plan 
+       working-directory: ./terraform
+       env:
+        DO_TOKEN: ${{ secrets.DO_TOKEN }}
+
      - name: Terraform Apply
        id: apply
        run: |
