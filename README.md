@@ -45,8 +45,8 @@ Host private-server
 ### Stretch Goals
 
 
-- `Harden Security`: Configure multi-factor authentication (MFA) for the bastion host. Use iptables or similar tools for more granular traffic filtering.
-- `Automate Setup`: Use Terraform or Ansible to automate the deployment and configuration of your bastion host and private server.
+- [] `Harden Security`: Configure multi-factor authentication (MFA) for the bastion host. Use iptables or similar tools for more granular traffic filtering.
+- [X] `Automate Setup`: Use Terraform or Ansible to automate the deployment and configuration of your bastion host and private server.
 
 
 After completing this project, you will have a strong understanding of how to set up a bastion host and securely manage access to private infrastructure. This foundational knowledge will prepare you for more advanced projects in network and infrastructure security.

@@ -83,10 +83,19 @@ jobs:
         echo "p_name=$(echo $DROPLET_INFO | jq -r '.name')" >> $GITHUB_OUTPUT
        working-directory: ./terraform         
 
- copy_install_run:
+ Transfer_Keys:
    runs-on: ubuntu-latest
    needs: build_droplet
 
    steps: 
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ needs.build_droplet.outputs.b_ipv4 }}
+        username: root
+        key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
+        source: ${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}
+        target: /root/id_rsa.pub
