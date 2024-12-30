@@ -57,9 +57,10 @@ After completing this project, you will have a strong understanding of how to se
     - DO_TOKEN : Digital Ocean access token
     - DO_SPACES_SECRET_KEY : Digital Ocean spaces secret key (for Terraform state file)
     - DO_SPACES_ACCESS_KEY : Digital Ocean spaces access key (for Terraform state file)
-    - DO_SSH_PUBLIC_KEY : Keypair to be used for VM 
-    - DO_SSH_PRIVATE_KEY : Keypair to be used for VM
-    - VM_HOST: IP or hostname of VM host
+    - DO_SSH_PUBLIC_KEY_BASTION : Keypair to be used for Bastion Host VM 
+    - DO_SSH_PRIVATE_KEY_BASTION : Keypair to be used for Bastion Host VM
+    - DO_SSH_PUBLIC_KEY_PRIVATE : Keypair to be used for Private VM 
+    - DO_SSH_PRIVATE_KEY_PRIVATE : Keypair to be used for Private VM
 
 ## To Run backup Manually 
 
@@ -79,4 +80,4 @@ After completing this project, you will have a strong understanding of how to se
 
 ## Lessons Learned
 
-- Lessons
+- Digital Ocean auto-assigns a `public ip` with no option to turn off so access must be configured at firewall. 
