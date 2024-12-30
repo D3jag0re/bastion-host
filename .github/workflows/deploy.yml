@@ -91,11 +91,29 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: copy file via ssh key
+    - name: Setup SSH Keys
+      run: |
+        # Create the SSH directory
+        mkdir -p ~/.ssh
+
+        # Write the private key into a file
+        echo "${{secrets.DO_SSH_PRIVATE_KEY_PRIVATE}}" > ~/.ssh/id_rsa
+
+        # Write the public key into a file
+        echo "${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" > ~/.ssh/id_rsa.pub
+
+        # Set the correct permissions
+        chmod 600 ~/.ssh/id_rsa
+        chmod 644 ~/.ssh/id_rsa.pub
+
+        # Add the remote host to known_hosts to prevent prompts
+        ssh-keyscan -H your.server.ip >> ~/.ssh/known_hosts
+
+    - name: copy key to remote server
       uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ needs.build_droplet.outputs.b_ipv4 }}
         username: root
         key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
-        source: ${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}
-        target: /root/id_rsa.pub
+        source: ~/.ssh
+        target: /root
