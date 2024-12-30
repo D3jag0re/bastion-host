@@ -43,6 +43,8 @@ jobs:
        run: |
         terraform plan  \
         -var "do_token=${{ secrets.DO_TOKEN }}" \
+        -var "public_key=${{ secrets.DO_SSH_PUBLIC_KEY_BASTION }}"
+        -var "public_key_priv"=${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}
         -input=false \
        
        env:

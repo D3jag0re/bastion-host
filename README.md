@@ -82,3 +82,4 @@ After completing this project, you will have a strong understanding of how to se
 
 - Digital Ocean auto-assigns a `public ip` with no option to turn off so access must be configured at firewall. 
 - Terraform was hanging in GitHub Actions, ran locally and got the errors. Also was hanging due to not specifying token in plan command. 
+- Also hanging and had to specify "-input=false \" in order for it to `stop waiting for an input` as I did not configure the multiple keys correctly
