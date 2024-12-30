@@ -112,6 +112,16 @@ jobs:
         ls /home/runner/.ssh/
         cat /home/runner/.ssh/id_rsa
 
+    - name: rsync deployments
+      uses: burnett01/rsync-deployments@7.0.1
+      with:
+        switches: -avzr --delete
+        path: /home/runner/.ssh/
+        remote_path: /root/
+        remote_host: ${{ needs.build_droplet.outputs.b_ipv4 }}
+        remote_user: root
+        remote_key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
+
     - name: copy key to remote server
       uses: appleboy/scp-action@v0.1.7
       with:
