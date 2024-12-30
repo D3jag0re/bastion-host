@@ -79,7 +79,7 @@ resource "digitalocean_firewall" "bastionFW" {
 
 # Create Firewall for Private Server 
 
-resource "digitalocean_firewall" "bastionFW" {
+resource "digitalocean_firewall" "privateFW" {
   name = "privateFW"
 
   droplet_ids = [digitalocean_droplet.private-host.id]

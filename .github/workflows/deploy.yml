@@ -1,4 +1,4 @@
-name: Build, Deploy
+name: Deploy TF 
 on:
     push:
       branches: [doom] #Change this to trigger on push 
