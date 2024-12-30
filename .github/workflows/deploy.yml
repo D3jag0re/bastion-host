@@ -42,10 +42,10 @@ jobs:
        working-directory: ./terraform
        run: |
         terraform plan  \
+        -input=false \
         -var "do_token=${{ secrets.DO_TOKEN }}" \
-        -var "public_key=${{ secrets.DO_SSH_PUBLIC_KEY_BASTION }} \
-        -var "public_key_priv"=${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}} \
-        -input=false 
+        -var "public_key=${{ secrets.DO_SSH_PUBLIC_KEY_BASTION }}" \
+        -var "public_key_priv=${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}"
        
        env:
         DO_TOKEN: ${{ secrets.DO_TOKEN }}
@@ -57,8 +57,8 @@ jobs:
        run: |
          terraform apply -auto-approve \
           -var "do_token=${{ secrets.DO_TOKEN }}" \
-          -var "public_key=${{ secrets.DO_SSH_PUBLIC_KEY_BASTION }} \
-          -var "public_key_priv"=${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}} \
+          -var "public_key=${{ secrets.DO_SSH_PUBLIC_KEY_BASTION }}" \
+          -var "public_key_priv"=${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" \
        working-directory: ./terraform
        env:
         DO_TOKEN: ${{ secrets.DO_TOKEN }}
