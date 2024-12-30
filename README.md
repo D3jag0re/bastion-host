@@ -20,7 +20,7 @@ You will set up a bastion host in a cloud environment and configure it to secure
 
 - Configure both the servers to allow SSH connection and configure SSH in a way that you can SSH into the private server by jumping through the bastion host
 
-``
+```
 Host bastion
     HostName <bastion-ip>
     User <bastion-user>
@@ -31,7 +31,7 @@ Host private-server
     User <private-server-user>
     ProxyJump bastion
     IdentityFile <path-to-private-server-private-key>
-``
+```
 
 - Connect tothe bastion host using: 
     `ssh bastion   `
