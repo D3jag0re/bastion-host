@@ -64,11 +64,15 @@ After completing this project, you will have a strong understanding of how to se
 
 ## To Run  
 
+- Run workflow 
+- Make note of `bastion-host ip` and `private-server private ip`
+- SSH into `bastion-host` using its ip 
+- Then using the keys copied into `/root/keys/`, ssh into private-server 
 
 
 ## Notes 
 
-- Notes. 
+- Try SSHing into private-server using its Public IP, you will find you cannot. 
 
 ## Lessons Learned
 

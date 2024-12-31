@@ -89,8 +89,8 @@ jobs:
 
    steps: 
 
-    - name: Wait for 15 seconds 
-      run: sleep 15
+    - name: Wait for 25 seconds 
+      run: sleep 25
 
     - name: Checkout repository
       uses: actions/checkout@v4
