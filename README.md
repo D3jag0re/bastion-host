@@ -62,15 +62,7 @@ After completing this project, you will have a strong understanding of how to se
     - DO_SSH_PUBLIC_KEY_PRIVATE : Keypair to be used for Private VM 
     - DO_SSH_PRIVATE_KEY_PRIVATE : Keypair to be used for Private VM
 
-## To Run backup Manually 
-
-- Trigger workflow OR you can:
-    - copy backupDB.sh and restoreDB.sh to host VM
-    - Run 
-
-## To Run backup Automatically 
-
-- A
+## To Run  
 
 
 
@@ -84,3 +76,5 @@ After completing this project, you will have a strong understanding of how to se
 - Terraform was hanging in GitHub Actions, ran locally and got the errors. Also was hanging due to not specifying token in plan command. 
 - Also hanging and had to specify "-input=false \" in order for it to `stop waiting for an input` as I did not configure the multiple keys correctly
 - leading and trailing `/` still haunt me ... 
+- So rsync/scp had me running in circles. But again, took a step back, re-evaluated the approach and got it in a reasonable amount of time. 
+- Whitespace after a newline `\` can cause issues 

@@ -66,6 +66,12 @@ resource "digitalocean_firewall" "bastionFW" {
   }
 
   outbound_rule {
+    protocol              = "tcp"
+    port_range            = "22"
+    destination_addresses = ["10.10.10.0/24"]
+  }
+
+  outbound_rule {
     protocol              = "udp"
     port_range            = "53"
     destination_addresses = ["0.0.0.0/0", "::/0"]

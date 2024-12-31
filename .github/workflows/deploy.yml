@@ -88,6 +88,10 @@ jobs:
    needs: build_droplet
 
    steps: 
+
+    - name: Wait for 15 seconds 
+      run: sleep 15
+
     - name: Checkout repository
       uses: actions/checkout@v4
 
