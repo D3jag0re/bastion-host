@@ -111,8 +111,7 @@ jobs:
         # Check for files 
         ls $GITHUB_WORKSPACE/.ssh/
 
-#############################################################################################
-    - name: rsync deployments
+    - name: Copy Keys to Bastion Host
       uses: burnett01/rsync-deployments@7.0.1
       with:
         switches: -avzr --delete
@@ -121,14 +120,3 @@ jobs:
         remote_host: ${{ needs.build_droplet.outputs.b_ipv4 }}
         remote_user: root
         remote_key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
-
-    - name: copy key to remote server
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ needs.build_droplet.outputs.b_ipv4 }}
-        username: root
-        key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
-        source: "/home/runner/.ssh/id_rsa"
-        target: /root
-
-##############################################################################################
