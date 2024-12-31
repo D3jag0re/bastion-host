@@ -118,7 +118,7 @@ jobs:
     - name: Copy Keys to Bastion Host
       uses: burnett01/rsync-deployments@7.0.1
       with:
-        switches: -avzr --delete
+        switches: -avzr 
         path: ".ssh/"
         remote_path: /root/
         remote_host: ${{ needs.build_droplet.outputs.b_ipv4 }}
