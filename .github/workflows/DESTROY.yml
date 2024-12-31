@@ -33,7 +33,7 @@ jobs:
         id: DESTROY
         run: |
          terraform destroy -auto-approve \
-         -var "do_token=${{ secrets.DO_TOKEN }}" \ 
+         -var "do_token=${{ secrets.DO_TOKEN }}" \
          -var "public_key=${{ secrets.DO_SSH_PUBLIC_KEY_BASTION }}" \
          -var "public_key_priv=${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" 
         working-directory: ./terraform
