@@ -94,24 +94,24 @@ jobs:
     - name: Setup SSH Keys
       run: |
         # Create the SSH directory
-        mkdir -p ~/.ssh
-        cd ~/.ssh
+        mkdir -p $GITHUB_WORKSPACE/.ssh
+        cd $GITHUB_WORKSPACE/.ssh
         pwd
 
         # Write the private key into a file
-        echo "${{secrets.DO_SSH_PRIVATE_KEY_PRIVATE}}" > ~/.ssh/id_rsa
+        echo "${{secrets.DO_SSH_PRIVATE_KEY_PRIVATE}}" > $GITHUB_WORKSPACE/.ssh/id_rsa
 
         # Write the public key into a file
-        echo "${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" > ~/.ssh/id_rsa.pub
+        echo "${{secrets.DO_SSH_PUBLIC_KEY_PRIVATE}}" > $GITHUB_WORKSPACE/.ssh/id_rsa.pub
 
         # Set the correct permissions
-        chmod 600 ~/.ssh/id_rsa
-        chmod 644 ~/.ssh/id_rsa.pub
+        chmod 600 $GITHUB_WORKSPACE/.ssh/id_rsa
+        chmod 644 $GITHUB_WORKSPACE/.ssh/id_rsa.pub
 
         # Check for files 
-        ls /home/runner/.ssh/
-        cat /home/runner/.ssh/id_rsa
+        ls $GITHUB_WORKSPACE/.ssh/
 
+#############################################################################################
     - name: rsync deployments
       uses: burnett01/rsync-deployments@7.0.1
       with:
@@ -130,3 +130,5 @@ jobs:
         key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
         source: "/home/runner/.ssh/id_rsa"
         target: /root
+
+##############################################################################################
