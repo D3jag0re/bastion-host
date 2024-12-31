@@ -80,3 +80,4 @@ After completing this project, you will have a strong understanding of how to se
 - Whitespace after a newline `\` can cause issues 
 - Issue where ssh access to bastion was blocked if the runner was successful in copying files (I was able to connect when it failed once due to the lack of wait)
     - As if it was locking itself after the initial ssh connection 
+    - ...I'm an idiot. Had the `--delete` flag still in rsync (was using this in a previous project and had copiedthen modified). Therefore  I was deleting the `.ssh` contents on the bastion host.

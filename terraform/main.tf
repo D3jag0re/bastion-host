@@ -92,13 +92,13 @@ resource "digitalocean_firewall" "privateFW" {
 
   inbound_rule {
     protocol         = "tcp"
-    port_range = "1-65535"
+    port_range       = "1-65535"
     source_addresses = ["10.10.10.0/24"]
   }
 
   inbound_rule {
     protocol         = "udp"
-    port_range = "1-65535"
+    port_range       = "1-65535"
     source_addresses = ["10.10.10.0/24"]
   }
 
@@ -109,13 +109,13 @@ resource "digitalocean_firewall" "privateFW" {
 
   outbound_rule {
     protocol              = "tcp"
-    port_range = "1-65535"
+    port_range            = "1-65535"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
   outbound_rule {
     protocol              = "udp"
-    port_range = "1-65535"
+    port_range            = "1-65535"
     destination_addresses = ["0.0.0.0/0", "::/0"]
   }
 
@@ -127,11 +127,11 @@ resource "digitalocean_firewall" "privateFW" {
 
 # Create Bastion Host
 resource "digitalocean_droplet" "bastion-host" {
-  image   = "ubuntu-22-04-x64"
-  name    = "bastion-host"
-  region  = "nyc2"
-  size    = "s-1vcpu-1gb"
-  backups = true
+  image    = "ubuntu-22-04-x64"
+  name     = "bastion-host"
+  region   = "nyc2"
+  size     = "s-1vcpu-1gb"
+  backups  = true
   vpc_uuid = digitalocean_vpc.bastion-vpc.id
 
   ssh_keys = [digitalocean_ssh_key.bastion_dynamic_key.id]
@@ -139,11 +139,11 @@ resource "digitalocean_droplet" "bastion-host" {
 
 # Create Private Server
 resource "digitalocean_droplet" "private-server" {
-  image   = "ubuntu-22-04-x64"
-  name    = "private-server"
-  region  = "nyc2"
-  size    = "s-1vcpu-1gb"
-  backups = true
+  image    = "ubuntu-22-04-x64"
+  name     = "private-server"
+  region   = "nyc2"
+  size     = "s-1vcpu-1gb"
+  backups  = true
   vpc_uuid = digitalocean_vpc.bastion-vpc.id
 
   ssh_keys = [digitalocean_ssh_key.private_dynamic_key.id]
@@ -153,18 +153,19 @@ resource "digitalocean_droplet" "private-server" {
 # Capture outputs of Bastion Droplet
 output "bastion_info" {
   value = {
-    id       = digitalocean_droplet.bastion-host.id
-    name     = digitalocean_droplet.bastion-host.name
-    ipv4     = digitalocean_droplet.bastion-host.ipv4_address
+    id   = digitalocean_droplet.bastion-host.id
+    name = digitalocean_droplet.bastion-host.name
+    ipv4 = digitalocean_droplet.bastion-host.ipv4_address
   }
 }
 
 # Capture outputs of Private Droplet
 output "private_info" {
   value = {
-    id       = digitalocean_droplet.private-server.id
-    name     = digitalocean_droplet.private-server.name
-    ipv4     = digitalocean_droplet.private-server.ipv4_address
+    id        = digitalocean_droplet.private-server.id
+    name      = digitalocean_droplet.private-server.name
+    ipv4      = digitalocean_droplet.private-server.ipv4_address
+    ipv4_priv = digitalocean_droplet.private-server.ipv4_address_private
   }
 }
 
