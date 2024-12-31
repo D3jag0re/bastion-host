@@ -109,14 +109,14 @@ jobs:
         chmod 644 $GITHUB_WORKSPACE/.ssh/id_rsa.pub
 
         # Check for files 
-        ls $GITHUB_WORKSPACE/.ssh/
+        ls ~/.ssh/
 
 #############################################################################################
     - name: rsync deployments
       uses: burnett01/rsync-deployments@7.0.1
       with:
         switches: -avzr --delete
-        path: ${{ github.workspace }}/.ssh/
+        path: ".ssh/"
         remote_path: /root/
         remote_host: ${{ needs.build_droplet.outputs.b_ipv4 }}
         remote_user: root
