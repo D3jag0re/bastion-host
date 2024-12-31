@@ -120,7 +120,7 @@ jobs:
       with:
         switches: -avzr 
         path: ".ssh/"
-        remote_path: /root/
+        remote_path: /root/keys/
         remote_host: ${{ needs.build_droplet.outputs.b_ipv4 }}
         remote_user: root
         remote_key: ${{ secrets.DO_SSH_PRIVATE_KEY_BASTION }}
